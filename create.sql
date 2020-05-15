@@ -8,7 +8,7 @@ CREATE TABLE users(
 
 
  CREATE TABLE books(
-   ISBN INTEGER PRIMARY KEY,
+   ISBN VARCHAR PRIMARY KEY,
    title VARCHAR NOT NULL,
    author VARCHAR NOT NULL,
    publication_year INTEGER NOT NULL
@@ -36,5 +36,5 @@ INSERT INTO reviews (book_reviewed, by_user, review) VALUES('The Black Unicorn',
 --> Test Queries run in terminal
 SELECT * FROM reviews WHERE by_user = 'Alice';
 
---> Joint query by foreign key 
+--> Joint query by foreign key
 SELECT book_reviewed, review, username FROM reviews JOIN users ON users.username = reviews.by_user;
