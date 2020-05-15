@@ -16,16 +16,51 @@ def main():
     for book in books:
         print(f"{book.title} ({book.isbn}) by {book.author} published in {book.publication_year}")
 
-    # Prompt user to find book via its title.
-    title = (input("\nTitle: "))
-    findbook = db.execute("SELECT isbn, title, author, publication_year FROM books WHERE title = :title",
-                        {"title": title}).fetchone()
+    #search option
+    searchmethod = input("Search by (title/ISBN/author): ")
 
-    print(f"{findbook.title} ({findbook.isbn}) by {findbook.author} published in {findbook.publication_year}")
-    # Make sure flight is valid.
-    #if flight is None:
-    #    print("Error: No such flight.")
-    #    return
+    #search by title
+    if (searchmethod == "title"):
+
+        # Prompt user to find book via its title.
+        title = (input("\nTitle: "))
+        findbook = db.execute("SELECT isbn, title, author, publication_year FROM books WHERE title = :title",
+                            {"title": title}).fetchone()
+        #Make sure title is valid
+        if findbook is None:
+            print(f"Error: No book with this {title} exists.")
+            return
+        else:
+            print(f"{findbook.title} ({findbook.isbn}) by {findbook.author} published in {findbook.publication_year}")
+
+    #search by ISBN
+    if (searchmethod == "ISBN"):
+
+        # Prompt user to find book via its title.
+        ISBN = (input("\nISBN: "))
+        findbook = db.execute("SELECT isbn, title, author, publication_year FROM books WHERE ISBN = :ISBN",
+                            {"ISBN": ISBN}).fetchone()
+        #Make sure ISBN is valid
+        if findbook is None:
+            print(f"Error: No book with this {ISBN} exists.")
+            return
+        else:
+            print(f"{findbook.title} ({findbook.isbn}) by {findbook.author} published in {findbook.publication_year}")
+
+    #search by Author
+    if (searchmethod == "author"):
+
+        # Prompt user to find book via its title.
+        author = (input("\aauthor: "))
+        findbook = db.execute("SELECT isbn, title, author, publication_year FROM books WHERE author = :author",
+                            {"author": author}).fetchone()
+        #Make sure author is valid
+        if findbook is None:
+            print(f"Error: No book by {author} exists.")
+            return
+        else:
+            print(f"{findbook.title} ({findbook.isbn}) by {findbook.author} published in {findbook.publication_year}")
+
 
     # List passengers.
     #passengers = db.execute("SELECT name FROM passengers WHERE flight_id = :flight_id",
