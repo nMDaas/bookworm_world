@@ -37,4 +37,13 @@ def search():
     foundisbn = db.execute("SELECT isbn, title, author, publication_year FROM books WHERE isbn = :isbn",
                         {"isbn": isbn}).fetchone()
 
-    return render_template("search.html", foundtitle=foundtitle, foundauthor=foundauthor, foundisbn=foundisbn)
+    if (foundtitle != None):
+        foundbook = foundtitle
+    elif (foundauthor != None):
+        foundbook = foundauthor
+    elif(foundisbn != None):
+        foundbook = foundisbn
+    else:
+        return render_template("failed_search.html")
+
+    return render_template("search.html", foundbook=foundbook)
