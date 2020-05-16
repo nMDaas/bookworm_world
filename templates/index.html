@@ -1,0 +1,62 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Flights
+{% endblock %}
+
+{% block body %}
+    <h1>Find Books</h1>
+
+    <!--to find book via its title-->
+    <h2> Find Title </h2>
+    <br>
+    <form action="{{ url_for('search') }}" method="post">
+        <div class="form-group">
+            <input class="form-control" name="title" placeholder="Search by Title">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Search</button>
+        </div>
+
+    </form>
+
+      <!--to find book via its author-->
+    <h2> Find Author </h2>
+    <br>
+    <form action="{{ url_for('search') }}" method="post">
+
+        <div class="form-group">
+            <input class="form-control" name="author" placeholder="Search by Author">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Search</button>
+        </div>
+
+    </form>
+
+  <!--to find book via its ISBN number -->
+    <h2> Find ISBN </h2>
+    <br>
+    <form action="{{ url_for('search') }}" method="post">
+
+      <div class="form-group">
+          <input class="form-control" name="isbn" placeholder="Search by ISBN">
+      </div>
+
+      <div class="form-group">
+          <button class="btn btn-primary">Search</button>
+      </div>
+
+  </form>
+
+    <hr>
+    <h2> Library </h2>
+    <hr>
+    {% for book in books %}
+      <h3>{{ book.title }}</h3>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Flights
+{% endblock %}
+
+{% block body %}
+    <h1>Book Found!</h1>
+    <hr>
+
+    <h2>Title</h2>
+    <h3 class="parameter">{{ foundtitle.title }}</h3>
+    <h3>{{ foundauthor.title }}</h3>
+    <h3>{{ foundisbn.title }}</h3>
+    <hr>
+
+    <h2>Author</h2>
+    <h3 class="parameter">{{ foundauthor.author }}</h5>
+    <hr>
+
+    <h2>ISBN</h2>
+    <h3 class="parameter">{{ foundisbn.isbn }}</h5>
+    <hr>
+
+{% endblock %}
