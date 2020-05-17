@@ -11,11 +11,10 @@
     <h3 >{{ foundbook.title }}</h3>
     <hr>
 
-    <div class="form-group">
-        <button onclick="count()">More Info</button>
-    </div>
-
-    <div id="review">
-    </div>
+    <button>
+      <a href="{{ url_for('book', book_title=foundbook.title) }}">
+         Check Review
+      </a>
+    </button>
 
 {% endblock %}

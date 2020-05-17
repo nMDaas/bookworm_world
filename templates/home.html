@@ -1,0 +1,18 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <h1> Welcome {{ founduser.username }}!</h1>
+
+    <form action="{{ url_for('library') }}" method="post">
+      <button class="btn btn-primary">Go To Library</button>
+    </form>
+
+    <form action="{{ url_for('searchbook') }}" method="post">
+      <button class="btn btn-primary">Search for a Book</button>
+    </form>
+    {% endblock %}

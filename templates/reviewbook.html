@@ -1,0 +1,15 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Library
+{% endblock %}
+
+{% block body %}
+
+<h1>{{ reviewbook.title }} </h1>
+<h3>Author: {{ reviewbook.author }}</h3>
+<h3>Year of Publication: {{ reviewbook.publication_year }}</h3>
+<h3>ISBN Number: {{ reviewbook.isbn }}</h3>
+
+{% endblock %}

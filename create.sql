@@ -2,6 +2,7 @@
 --> a review or not
 
 CREATE TABLE users(
+   
    username VARCHAR UNIQUE,
    password VARCHAR NOT NULL --> Currently on VARCHAR, so NOT secret
  );
