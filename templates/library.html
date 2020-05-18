@@ -1,4 +1,3 @@
-#Long List of all books
 
 {% extends "layout.html" %}
 
@@ -7,14 +6,6 @@
 {% endblock %}
 
 {% block body %}
-
-  <h5> Log Out</h5>
-<p>
-  <form action="{{ url_for('logout') }}" method="post">
-    <button class="btn btn-primary">Log Out</button>
-  </form>
-</p>
-<hr>
 <h2> Library </h2>
 
 <hr>
@@ -28,5 +19,4 @@
     </button>
     <hr>
   {% endfor %}
-
 {% endblock %}

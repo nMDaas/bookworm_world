@@ -1,16 +1,18 @@
-Page for Log in 
 
 {% extends "layout.html" %}
 
 {% block title %}
-    Flights
+    Bookworm World
 {% endblock %}
 
 {% block body %}
-<h2> Login </h2>
-<br>
-<form action="{{ url_for('login') }}" method="post">
-  <button class="btn btn-primary">Click here!</button>
-</form>
+
+<div class="middle">
+  <h2> Login </h2>
+  <br>
+  <form action="{{ url_for('login') }}" method="post">
+    <button class="btn btn-primary">Click here!</button>
+  </form>
+</div>
 
 {% endblock %}

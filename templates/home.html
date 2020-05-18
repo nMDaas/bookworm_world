@@ -1,4 +1,3 @@
-#Page after successful log in
 
 {% extends "layout.html" %}
 
@@ -7,6 +6,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="middle">
     <h1> Welcome {{ founduser.username }}!</h1>
 
     <h2> Explore Our Library of Books!</h2>
@@ -29,4 +29,5 @@
       <button class="btn btn-primary">Log Out</button>
     </form>
   </p>
+</div>
 {% endblock %}
