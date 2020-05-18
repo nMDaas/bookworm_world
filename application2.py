@@ -62,6 +62,10 @@ def library():
 def searchbook():
     return render_template("searchbook.html")
 
+@app.route("/logout", methods=["POST"])
+def logout():
+    return render_template("index.html")
+
 #Takes you to book page of a book
 @app.route("/library/<book_title>")
 def book(book_title):

@@ -1,3 +1,4 @@
+#Long List of all books
 
 {% extends "layout.html" %}
 
@@ -7,18 +8,25 @@
 
 {% block body %}
 
+  <h5> Log Out</h5>
+<p>
+  <form action="{{ url_for('logout') }}" method="post">
+    <button class="btn btn-primary">Log Out</button>
+  </form>
+</p>
+<hr>
 <h2> Library </h2>
 
 <hr>
-{% for book in books %}
-  <h3>{{ book.title }}</h3>
+  {% for book in books %}
+    <h3>{{ book.title }}</h3>
 
-  <button>
-    <a href="{{ url_for('book', book_title=book.title) }}">
-       Check Review
-    </a>
-  </button>
-  <hr>
-{% endfor %}
+    <button>
+      <a href="{{ url_for('book', book_title=book.title) }}">
+         Check Review
+      </a>
+    </button>
+    <hr>
+  {% endfor %}
 
 {% endblock %}

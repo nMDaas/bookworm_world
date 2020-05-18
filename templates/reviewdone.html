@@ -9,3 +9,10 @@
 <h2>You Reviewed {{book_reviewed}}!</h2>
 
 {% endblock %}
+<hr>
+  <h2> Log Out</h2>
+<p>
+  <form action="{{ url_for('logout') }}" method="post">
+    <button class="btn btn-primary">Log Out</button>
+  </form>
+</p>

@@ -1,3 +1,4 @@
+#Page after successful log in
 
 {% extends "layout.html" %}
 
@@ -8,11 +9,24 @@
 {% block body %}
     <h1> Welcome {{ founduser.username }}!</h1>
 
+    <h2> Explore Our Library of Books!</h2>
+    <p>
     <form action="{{ url_for('library') }}" method="post">
       <button class="btn btn-primary">Go To Library</button>
     </form>
-
+  </p>
+    <hr>
+    <h2> Looking for a Book? We Can Help!</h2>
+    <p>
     <form action="{{ url_for('searchbook') }}" method="post">
       <button class="btn btn-primary">Search for a Book</button>
     </form>
-    {% endblock %}
+  </p>
+  <hr>
+    <h2> Log Out</h2>
+  <p>
+    <form action="{{ url_for('logout') }}" method="post">
+      <button class="btn btn-primary">Log Out</button>
+    </form>
+  </p>
+{% endblock %}
