@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
@@ -42,8 +42,11 @@ def home():
     password = request.form.get("password")
     founduser = db.execute("SELECT username, password FROM users WHERE username = :username",
                         {"username": username, "password": password}).fetchone()
+    html = render_template("home.html", founduser=founduser)
+    response = make_response(html)
+    response.set_cookie('theUserName', username)
     if (founduser.password == password):
-        return render_template("home.html", founduser=founduser)
+        return response
     else:
         return render_template("incorrect.html")
 
@@ -62,14 +65,36 @@ def searchbook():
 #Takes you to book page of a book
 @app.route("/library/<book_title>")
 def book(book_title):
-    print("*** library(book_title) was called ***")
 
     """List details about a single book."""
-
+    current_user = request.cookies.get('theUserName')
+    reviews = db.execute("SELECT by_user, review, book_reviewed FROM reviews WHERE book_reviewed = :book_reviewed",
+                {"book_reviewed": book_title}).fetchall()
     reviewbook = db.execute("SELECT title, isbn, author, publication_year FROM books WHERE title = :title",
-                {"title": book_title}).fetchone()
+                            {"title": book_title}).fetchone()
+    books = db.execute("SELECT * FROM books").fetchall()
+    html2 = render_template("reviewbook.html", reviews=reviews, reviewbook=reviewbook, books=books, current_user=current_user)
+    response2 = make_response(html2)
+    response2.set_cookie('theBook', book_title)
+    return response2
 
-    return render_template("reviewbook.html", reviewbook=reviewbook)
+
+#add a review
+@app.route("/addreview", methods=["POST"])
+def addreview():
+    review = request.form.get("review")
+    by_user = request.cookies.get('theUserName')
+    book_reviewed = request.cookies.get('theBook')
+    check = db.execute("SELECT book_reviewed, by_user, review FROM reviews WHERE book_reviewed = :book_reviewed and by_user = :by_user",
+                        {"book_reviewed": book_reviewed, "by_user": by_user}).fetchone()
+
+    if (check == None):
+        db.execute("INSERT INTO reviews (book_reviewed, by_user, review) VALUES (:book_reviewed, :by_user, :review)",
+                {"book_reviewed": book_reviewed, "by_user": by_user, "review": review})
+        db.commit()
+        return render_template("reviewdone.html", book_reviewed=book_reviewed)
+    else:
+        return render_template("badreview.html", book_reviewed=book_reviewed)
 
 #search engine
 @app.route("/search", methods=["POST"])

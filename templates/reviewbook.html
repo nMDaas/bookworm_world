@@ -12,4 +12,22 @@
 <h3>Year of Publication: {{ reviewbook.publication_year }}</h3>
 <h3>ISBN Number: {{ reviewbook.isbn }}</h3>
 
+<form action="{{ url_for('addreview') }}" method="post">
+  <div class="opinion">
+      <input class="form-control" name="review" placeholder="Write your Review Here!">
+      <button class="btn btn-primary">Submit</button>
+  </div>
+</form>
+<br>
+<hr>
+  <h2>Book Reviews by Other users</h2>
+<hr>
+
+{% for review in reviews %}
+  <h3>{{ review.by_user }}</h3>
+  <p>
+    {{review.review}}
+  </p>
+{% endfor %}
+
 {% endblock %}
