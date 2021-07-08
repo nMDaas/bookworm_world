@@ -1,0 +1,18 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Bookworm World
+{% endblock %}
+
+{% block body %}
+
+<div class="middle">
+  <h2> Login </h2>
+  <br>
+  <form action="{{ url_for('login') }}" method="post">
+    <button class="btn btn-primary">Click here!</button>
+  </form>
+</div>
+
+{% endblock %}
